@@ -25,4 +25,9 @@
       name="plone.app.event.SynchronizationStrategies"
       />
 
+  <utility
+      component=".vocabularies.CustomEventTypes"
+      name="plone.app.event.CustomEventTypes"
+      />
+
 </configure>

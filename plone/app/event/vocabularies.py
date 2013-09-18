@@ -145,3 +145,13 @@ def SynchronizationStrategies(context):
     items = ['none', 'keep_newer', 'keep_mine', 'keep_theirs']
     return SimpleVocabulary.fromValues(items)
 directlyProvides(SynchronizationStrategies, IVocabularyFactory)
+
+
+def CustomEventTypes(context):
+    """ Vocabulary for icalendar synchronization strategies.
+    """
+    # TODO: translate
+    items = ['', 'Conference', 'Workshop', 'Seminar']
+    return SimpleVocabulary.fromValues(items)
+directlyProvides(CustomEventTypes, IVocabularyFactory)
+
