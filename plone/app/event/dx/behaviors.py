@@ -264,6 +264,19 @@ class IEventContact(model.Schema):
     )
 
 
+class IEventUID(model.Schema):
+    """ Event UID Schema.
+    """
+    event_uid = schema.TextLine(
+        title=_(
+            u'label_event_uid',
+            default=u''
+        ),
+        required=False
+    )
+#    form.mode(secret='hidden')
+
+
 class IEventSummary(model.Schema):
     """Event summary (body text) schema."""
 
@@ -286,6 +299,7 @@ alsoProvides(IEventRecurrence, IFormFieldProvider)
 alsoProvides(IEventLocation, IFormFieldProvider)
 alsoProvides(IEventAttendees, IFormFieldProvider)
 alsoProvides(IEventContact, IFormFieldProvider)
+alsoProvides(IEventUID, IFormFieldProvider)
 alsoProvides(IEventSummary, IFormFieldProvider)
 
 
