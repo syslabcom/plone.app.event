@@ -1,4 +1,5 @@
 from Products.CMFPlone.PloneBatch import Batch
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from calendar import monthrange
 from datetime import date
@@ -392,6 +393,14 @@ class IEventListingSettings(Interface):
         default=False
     )
 
+    language_neutral = schema.Bool(
+        title=_('label_language_neutral', default=u'Language neutral'),
+        description=_('help_language_neutral',
+                      default=u'Disregard Language in search. Overrides the '
+                      'above setting.'),
+        default=False
+    )
+
 
 class EventListingSettings(AnnotationAdapter):
     """Annotation Adapter for IEventListingSettings
@@ -409,6 +418,7 @@ class EventListingSettingsForm(form.Form):
         data = {}
         settings = IEventListingSettings(self.context)
         data['current_folder_only'] = settings.current_folder_only
+        data['language_neutral'] = settings.language_neutral
         return data
 
     def form_next(self):
@@ -421,6 +431,7 @@ class EventListingSettingsForm(form.Form):
             return False
         settings = IEventListingSettings(self.context)
         settings.current_folder_only = data['current_folder_only']
+        settings.language_neutral = data['language_neutral']
         self.form_next()
 
     @button.buttonAndHandler(u'Cancel')

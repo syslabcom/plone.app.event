@@ -13,11 +13,15 @@
   <!-- Hierarchy control -->
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
- <property name="allowed_content_types"/>
+ <property name="allowed_content_types">
+    <element value="File" />
+    <element value="Image" />
+ </property>
+
 
   <!-- Schema, class and security -->
   <property name="schema"></property>
-  <property name="klass">plone.dexterity.content.Item</property>
+  <property name="klass">plone.dexterity.content.Container</property>
   <property name="add_permission">cmf.AddPortalContent</property>
   <property name="model_source">
   &lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;

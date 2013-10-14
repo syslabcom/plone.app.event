@@ -123,6 +123,12 @@ class IEventBasic(model.Schema):
         vocabulary="plone.app.event.AvailableTimezones"
     )
 
+    event_custom_type = schema.Choice(
+        title = _(u'label_event_type', default=u'Event type'),
+        required = False,
+        vocabulary="plone.app.event.CustomEventTypes"
+    )
+
     @invariant
     def validate_start_end(data):
         if data.start > data.end:
@@ -352,6 +358,14 @@ class EventBasic(object):
             self.start = self.start
             self.end = self.end
         self.context.timezone = value
+
+
+    @property
+    def event_custom_type(self):
+        return getattr(self.context, 'event_custom_type', '')
+    @event_custom_type.setter
+    def event_custom_type(self, value):
+        self.context.event_custom_type = value
 
     # TODO: whole day - and other attributes - might not be set at this time!
     # TODO: how to provide default values?
